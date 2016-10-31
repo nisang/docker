@@ -10,11 +10,11 @@ WORKDIR /opt/zcash-1.0.0
 RUN ./zcutil/fetch-params.sh && ./zcutil/build.sh -j4
 RUN mkdir ~/.zcash && touch ~/.zcash/zcash.conf
 #COPY zcash.conf ~/.zcash/zcash.conf
-RUN echo "">~/.zcash/zcash.conf \n
-	echo "testnet=1">>~/.zcash/zcash.conf \n
-	echo "addnode=alphatestnet.z.cash">>~/.zcash/zcash.conf \n
-	echo "rpcuser=nidandan8980">>~/.zcash/zcash.conf \n
-	echo "rpcpassword=_U5gTg1LAyLD">>~/.zcash/zcash.conf \n
+RUN echo "">~/.zcash/zcash.conf \
+	echo "testnet=1">>~/.zcash/zcash.conf \
+	echo "addnode=alphatestnet.z.cash">>~/.zcash/zcash.conf \
+	echo "rpcuser=nidandan8980">>~/.zcash/zcash.conf \
+	echo "rpcpassword=_U5gTg1LAyLD">>~/.zcash/zcash.conf \
 	echo "gen=1">>~/.zcash/zcash.conf
 CMD ./src/zcashd -daemon
 # ./src/zcash-cli  stop 
