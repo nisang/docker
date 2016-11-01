@@ -10,12 +10,16 @@ WORKDIR /opt/zcash-1.0.0
 RUN ./zcutil/fetch-params.sh && ./zcutil/build.sh -j4
 RUN mkdir ~/.zcash && touch ~/.zcash/zcash.conf
 #COPY zcash.conf ~/.zcash/zcash.conf
-RUN echo "">~/.zcash/zcash.conf \
-	echo "testnet=1">>~/.zcash/zcash.conf \
-	echo "addnode=alphatestnet.z.cash">>~/.zcash/zcash.conf \
-	echo "rpcuser=nidandan8980">>~/.zcash/zcash.conf \
-	echo "rpcpassword=_U5gTg1LAyLD">>~/.zcash/zcash.conf \
-	echo "gen=1">>~/.zcash/zcash.conf
-CMD ./src/zcashd -daemon
-# ./src/zcash-cli  stop 
-# ./src/zcash-cli getinfo
+RUN echo "">root/.zcash/zcash.conf && echo "testnet=1">>/root/.zcash/zcash.conf && echo "addnode=alphatestnet.z.cash">>/root/.zcash/zcash.conf && echo "rpcuser=nidandan8980">>/root/.zcash/zcash.conf && echo "rpcpassword=_U5gTg1LAyLD">>/root/.zcash/zcash.conf && echo "gen=1">>/root/.zcash/zcash.conf
+
+RUN ln -s /opt/zcash-1.0.0/src/zcash-cli /bin/zcash-cli && ln -s /opt/zcash-1.0.0/src/zcashd /bin/zcashd
+RUN rm -rf /bin/sh && ln -s /bin/bash /bin/sh
+COPY run.sh /opt/run.sh
+RUN chmod +x /opt/run.sh
+WORKDIR /opt
+CMD ./run.sh
+# zcashd -daemon
+# zcash-cli  stop
+# zcash-cli setgenerate true
+# zcash-cli getinfo
+# zcash-cli listtransactions
