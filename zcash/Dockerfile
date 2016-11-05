@@ -5,7 +5,8 @@ RUN echo "">/etc/apt/sources.list && echo "deb http://mirrors.aliyun.com/debian 
 WORKDIR /opt
 RUN apt-get update && apt-get install -y build-essential pkg-config libgtest-dev libc6-dev m4 g++-multilib autoconf libtool ncurses-dev unzip git python zlib1g-dev wget bsdmainutils && wget -q -O zcash.zip https://github.com/zcash/zcash/archive/v1.0.1.zip
 
-RUN unzip -o -d zcash zcash.zip
+#RUN unzip -o -d zcash zcash.zip
+RUN unzip -o zcash.zip && mv zcash-1.0.1 zcash
 WORKDIR /opt/zcash
 RUN ./zcutil/fetch-params.sh && ./zcutil/build.sh -j4
 RUN mkdir ~/.zcash && touch ~/.zcash/zcash.conf
