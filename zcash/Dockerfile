@@ -9,8 +9,8 @@ RUN apt-get update && apt-get install -y build-essential nginx pkg-config libgte
 RUN unzip -o zcash.zip && mv zcash-1.0.2 zcash
 WORKDIR /opt/zcash
 RUN ./zcutil/fetch-params.sh && ./zcutil/build.sh -j2
-RUN mkdir ~/.zcash && touch ~/.zcash/zcash.conf
-COPY zcash.conf ~/.zcash/zcash.conf
+RUN mkdir /root/.zcash && touch /root/.zcash/zcash.conf
+COPY zcash.conf /root/.zcash/zcash.conf
 #RUN echo "">/root/.zcash/zcash.conf && echo "testnet=1">>/root/.zcash/zcash.conf && echo "addnode=alphatestnet.z.cash">>/root/.zcash/zcash.conf && echo "rpcuser=nidandan8980">>/root/.zcash/zcash.conf && echo "rpcpassword=_U5gTg1LAyLD">>/root/.zcash/zcash.conf && echo "gen=1">>/root/.zcash/zcash.conf
 
 RUN ln -s /opt/zcash/src/zcash-cli /bin/zcash-cli && ln -s /opt/zcash/src/zcashd /bin/zcashd
@@ -18,6 +18,9 @@ RUN rm -rf /bin/sh && ln -s /bin/bash /bin/sh
 COPY run.sh /opt/run.sh
 RUN chmod +x /opt/run.sh
 WORKDIR /opt
+COPY docker-entrypoint.sh /opt/docker-entrypoint.sh
+RUN chmod +x docker-entrypoint.sh
+ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ./run.sh
 # zcashd -daemon
 # zcash-cli  stop
