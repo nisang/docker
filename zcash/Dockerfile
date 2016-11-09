@@ -18,8 +18,8 @@ RUN rm -rf /bin/sh && ln -s /bin/bash /bin/sh
 COPY run.sh /opt/run.sh
 RUN chmod +x /opt/run.sh
 WORKDIR /opt
-COPY docker-entrypoint.sh /opt/docker-entrypoint.sh
-RUN chmod +x docker-entrypoint.sh
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ./run.sh
 # zcashd -daemon
