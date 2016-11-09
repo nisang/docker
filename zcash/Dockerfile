@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y build-essential pkg-config libgtest-dev
 #RUN unzip -o -d zcash zcash.zip
 RUN unzip -o zcash.zip && mv zcash-1.0.2 zcash
 WORKDIR /opt/zcash
-RUN ./zcutil/fetch-params.sh && ./zcutil/build.sh -j4
+RUN ./zcutil/fetch-params.sh && ./zcutil/build.sh -j2
 RUN mkdir ~/.zcash && touch ~/.zcash/zcash.conf
 COPY zcash.conf ~/.zcash/zcash.conf
 #RUN echo "">/root/.zcash/zcash.conf && echo "testnet=1">>/root/.zcash/zcash.conf && echo "addnode=alphatestnet.z.cash">>/root/.zcash/zcash.conf && echo "rpcuser=nidandan8980">>/root/.zcash/zcash.conf && echo "rpcpassword=_U5gTg1LAyLD">>/root/.zcash/zcash.conf && echo "gen=1">>/root/.zcash/zcash.conf
