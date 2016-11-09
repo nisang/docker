@@ -2,6 +2,7 @@
 #!/bin/sh
 zcashd -daemon
 zcash-cli getinfo
+echo `zcash-cli listtransactions`>>/var/www/html/zcash.html
 while(( 1==1 ))
 do
         sleep 3600
