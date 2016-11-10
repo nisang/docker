@@ -20,6 +20,6 @@ RUN ln -s /opt/nheqminer/Linux_cmake/nheqminer_cpu/nheqminer_cpu /bin/nheqminer
 COPY run.sh /opt/run.sh
 
 RUN chmod +x /opt/run.sh
-
+RUN rm -rf /bin/sh && ln -s /bin/bash /bin/sh
 ENTRYPOINT ["/opt/run.sh"] 
 
