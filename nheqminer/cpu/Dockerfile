@@ -17,3 +17,9 @@ WORKDIR /opt/nheqminer/Linux_cmake/nheqminer_cpu
 RUN cmake . && make -j $(nproc)
 RUN ln -s /opt/nheqminer/Linux_cmake/nheqminer_cpu/nheqminer_cpu /bin/nheqminer
 
+COPY run.sh /opt/run.sh
+
+RUN chmod +x /opt/run.sh
+
+ENTRYPOINT ["sh /opt/run.sh"] 
+
