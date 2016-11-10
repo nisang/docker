@@ -21,5 +21,5 @@ COPY run.sh /opt/run.sh
 
 RUN chmod +x /opt/run.sh
 RUN rm -rf /bin/sh && ln -s /bin/bash /bin/sh
-ENTRYPOINT ["/opt/run.sh"] 
+CMD ["/opt/run.sh"] 
 
