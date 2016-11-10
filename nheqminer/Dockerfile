@@ -13,5 +13,5 @@ RUN dpkg -i cuda-repo-ubuntu1604_8.0.44-1_amd64.deb
 RUN apt-get update && apt-get install -y cuda cuda-toolkit-8-0 cmake build-essential libboost-all-dev
 RUN git clone -b Linux https://github.com/nicehash/nheqminer.git
 
-# RUN cd cd nheqminer/Linux_cmake/nheqminer_cuda_tromp && cmake . && make -j $(nproc)
+# RUN cd nheqminer/Linux_cmake/nheqminer_cuda_tromp && cmake . && make -j $(nproc)
 RUN cd nheqminer/Linux_cmake/nheqminer_cuda_tromp && cmake COMPUTE=50 . && make
