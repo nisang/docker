@@ -21,5 +21,5 @@ COPY run.sh /opt/run.sh
 
 RUN chmod +x /opt/run.sh
 
-ENTRYPOINT ["sh /opt/run.sh"] 
+ENTRYPOINT ["/opt/run.sh"] 
 
