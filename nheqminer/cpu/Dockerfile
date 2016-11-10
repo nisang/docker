@@ -18,8 +18,9 @@ RUN cmake . && make -j $(nproc)
 RUN ln -s /opt/nheqminer/Linux_cmake/nheqminer_cpu/nheqminer_cpu /bin/nheqminer
 
 COPY run.sh /opt/run.sh
-
-RUN chmod +x /opt/run.sh
+COPY docker-entrypoint.sh /opt/docker-entrypoint.sh
+RUN chmod +x /opt/run.sh && chmod +x /opt/docker-entrypoint.sh
 RUN rm -rf /bin/sh && ln -s /bin/bash /bin/sh
+ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["/opt/run.sh"] 
 
