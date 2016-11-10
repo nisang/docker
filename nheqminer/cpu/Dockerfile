@@ -15,5 +15,5 @@ RUN sh assemble.sh
 
 WORKDIR /opt/nheqminer/Linux_cmake/nheqminer_cpu
 RUN cmake . && make -j $(nproc)
-RUN echo "export PATH='$PATH:/opt/nheqminer/nheqminer'">>/etc/profile && source /etc/profile
+RUN ln -s /opt/nheqminer/Linux_cmake/nheqminer_cpu/nheqminer_cpu /bin/nheqminer
 
