@@ -2,9 +2,9 @@ FROM ubuntu:compile
 
 #RUN echo "">/etc/apt/sources.list && echo "deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted universe multiverse">>/etc/apt/sources.list && echo "deb http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted universe multiverse">>/etc/apt/sources.list && echo "deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted universe multiverse">>/etc/apt/sources.list && echo "deb http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse">>/etc/apt/sources.list
 
-#RUN apt-get update && apt-get install -y cmake  build-essential libboost-all-dev
+RUN apt-get update && apt-get install -y cmake  build-essential libboost-all-dev git wget
 
-#WORKDIR /opt
+WORKDIR /opt
 
 RUN git clone -b Linux https://github.com/nicehash/nheqminer.git
 #RUN wget -q -O nheqminer.tar.gz http://23.83.228.127/weex/nheqminer.tar.gz && tar -zxvf nheqminer.tar.gz
