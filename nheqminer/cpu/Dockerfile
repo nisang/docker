@@ -17,10 +17,11 @@ WORKDIR /opt/nheqminer/Linux_cmake/nheqminer_cpu
 RUN cmake . && make -j $(nproc)
 RUN ln -s /opt/nheqminer/Linux_cmake/nheqminer_cpu/nheqminer_cpu /bin/nheqminer
 
-COPY run.sh /usr/local/bin/
+WORKDIR /opt
+COPY run.sh /opt/run.sh
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN ln -s /usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat
 RUN rm -rf /bin/sh && ln -s /bin/bash /bin/sh
 #ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["run.sh"] 
+CMD ./run.sh
 
