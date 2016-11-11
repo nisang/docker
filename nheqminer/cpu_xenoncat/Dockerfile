@@ -15,7 +15,7 @@ RUN sh assemble.sh
 
 WORKDIR /opt/nheqminer/Linux_cmake/nheqminer_cpu_xenoncat
 RUN cmake . && make -j $(nproc)
-RUN ln -s /opt/nheqminer/Linux_cmake/nheqminer_cpu_xenoncat/nheqmine_cpu_xenoncat /bin/nheqminer
+RUN ln -s /opt/nheqminer/Linux_cmake/nheqminer_cpu_xenoncat/nheqminer_cpu_xenoncat /bin/nheqminer
 
 WORKDIR /opt
 COPY run.sh /opt/run.sh
